@@ -1,22 +1,19 @@
 {
-  "name": "quoteme",
+  "name": "pickyouropp",
   "version": "1.0.0",
-  "description": "",
+  "description": "Extension to pick your opponent randomly",
   "main": "angular-resource.min.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rrosh96/quoteMe.git"
+    "url": "git+https://github.com/rrosh96/pickYourOpp.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/rrosh96/quoteMe/issues"
+    "url": "https://github.com/rrosh96/pickYourOpp/issues"
   },
-  "homepage": "https://github.com/rrosh96/quoteMe#readme",
-  "dependencies": {
-    "firebase": "^5.0.2"
-  }
+  "homepage": "https://github.com/rrosh96/pickYourOpp#readme"
 }
