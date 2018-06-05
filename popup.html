@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Todays Quotes</title>
+        <script src="angular.min.js"></script>
+        <script src="angular-route.min.js"></script>
+        <script src="angular-resource.min.js"></script>
+        <script src="jquery-3.2.1.min.js"></script>
+        <script src="popup.js"></script>
+        <link rel="stylesheet" type="text/css" href="popup.css">
+    </head>
+    <body ng-app="angularApp">
+        <div ng-controller = 'mainController' class="box">
+            <h1>Today's Quote</h1>
+            <h2 style="color: red;">{{txt}}<h2>
+            <h3 style="float: right;color: darkgrey">- {{author}}</h3>
+        </div>
+    </body>
+</html> 
