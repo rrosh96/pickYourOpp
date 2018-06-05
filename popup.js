@@ -10,6 +10,23 @@ angularApp.controller('mainController', ['$scope' ,'$http', '$timeout','$window'
     $scope.txt = 'Marvel Cinematic Universe-Loading';
     $scope.author = '';
 
+
+    function debounce(func, wait, immediate) {
+        var timeout;
+        return function() {
+            var context = this, args = arguments;
+            var later = function() {
+                timeout = null;
+                if (!immediate) func.apply(context, args);
+            };
+            var callNow = immediate && !timeout;
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+            if (callNow) func.apply(context, args);
+        };
+    };
+
+
     // var endTime = 1528237800000;
     var endTime = 0;
     $scope.hours = '00';
@@ -22,27 +39,33 @@ angularApp.controller('mainController', ['$scope' ,'$http', '$timeout','$window'
     };
 
     $scope.isKnobMove = false;      
-
+    $scope.lastYpos = -1;
     $(window).on('mouseup',function(){  
-        console.log('Mouse Up');
         $scope.isKnobMove = false;      
         $scope.knobHold = false;
         $scope.knobAngle = -45;
         $('#handle').css('transform',"translateX(-50%) rotate(" + $scope.knobAngle + "deg)");
     });
 
-    $(window).on('mousemove',function(event){        
-        if($scope.knobHold && $scope.knobAngle <=45){
+    $(window).on('mousemove', debounce(function(event){  
+            
+        if($scope.knobHold && ($scope.knobAngle <=45 && $scope.knobAngle >=-45)){
+             
             $scope.isKnobMove = true;
     //    var target = $scope('#handle');
-            $scope.knobAngle += 5;
+            
+            
+            if((event.pageY - $scope.lastYpos) >= 5){
+                $scope.knobAngle += 5;
+            }
+            if(($scope.lastYpos - event.pageY) >= 5){
+                $scope.knobAngle -= 5;
+            }
             $('#handle').css('transform',"translateX(-50%) rotate(" + $scope.knobAngle + "deg)");
-            // if($scope.mouseY <= event.pageY && (event.pageY - $scope.mouseY) >){
-            //     console.log('kela erankuthu');
-            // }
+            $scope.lastYpos = event.pageY;
         }
        
-    });
+    },5));
 
     $scope.knobAngle = -45;
 
@@ -51,10 +74,10 @@ angularApp.controller('mainController', ['$scope' ,'$http', '$timeout','$window'
     $scope.mouseY = -1;
 
     $scope.knobClick = function(event,hold){
-        console.log(event);
         $scope.knobHold = hold;
         if(hold){
             $scope.mouseY = event.pageY;
+            $scope.lastYpos = event.pageY;
         }        
         if(!hold){
             var target = event.target;
@@ -100,15 +123,15 @@ angularApp.controller('mainController', ['$scope' ,'$http', '$timeout','$window'
     // }, function(err){
     //     console.info(err);
     // })
-    $http.get(APIURL)
-    .then(function(response){
-        console.log(response);
-        $scope.txt = response.data.quote;
-        $scope.author = response.data.author;
-    })
-    .catch(function(err){
-        console.log(err);
-    })
+    // $http.get(APIURL)
+    // .then(function(response){
+    //     console.log(response);
+    //     $scope.txt = response.data.quote;
+    //     $scope.author = response.data.author;
+    // })
+    // .catch(function(err){
+    //     console.log(err);
+    // })
 
     
     // var firebase = require('firebase');
