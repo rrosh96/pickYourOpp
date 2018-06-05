@@ -11,12 +11,29 @@
     </head>
     <body ng-app="angularApp">
         <div ng-controller = 'mainController' class="box">
-            <!-- <div class="title-1">Soliton Badminton Tournament - 2018</div> -->
+             <div class="title-1">Soliton Badminton Tournament - 2018</div> 
             <div class="timer" ng-show="timerOn">{{hours}}:{{mins}}:{{secs}}</div>
             <div class="main-container" ng-hide="timerOn">
-                <div class="right-container">
+                <input type="text" ng-model="teamID" placeholder="12345" class="textBox">
+                <!--<div class="right-container">
                     <div class="title-3">And your opponent is</div>
+                </div>-->
+                <div class="casino-container">
+                    <div class="left-panel"></div>
+                    <div class="right-panel">
+                        <div class = "slider-container">
+                            <div class="slider-value"></div>
+                            <div class="semi-circle"></div>
+                        </div>
+                        <div id="handle" class = "handle-container">
+                            <div class="handle-dummy"></div>
+                            <div class="handlebar"></div>
+                            <div class = "knob" ng-class="{'no-pointer':isKnobMove,'all-pointer':!isKnobMove}" ng-mousedown="knobClick($event,true)" 
+                            ></div>
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </div>
     </body>

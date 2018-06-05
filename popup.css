@@ -31,11 +31,118 @@
 }
 
 .main-container {
-	display: flex;
 	padding: 5px;
 }
 
 .left-container, .right-container {
 	width: 50%;
 	padding: 10px;
+}
+
+.textBox {
+	width: 150px;
+    text-align: center;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 35px;
+}
+
+.casino-container {
+	display: flex;
+	margin-top: 10px
+}
+
+.left-panel {
+	height: 200px;
+	border:1px solid black;
+	width: 75%;
+}
+
+.right-panel {
+	height: 200px;
+    border: 1px solid black;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    position: relative;
+    padding-left: 20px;
+    width: 25%;
+}
+
+.slider-container {
+	border: 1px solid black;
+    padding: 5px 10px;
+    width: 10px;
+    height: 80%;
+    position: relative;
+    z-index: 100;
+    background: silver;
+    display: flex;
+    border-radius: 16px;
+}
+
+.no-pointer{
+	pointer-events: none;
+}
+
+.all-pointer{
+	pointer-events: all;
+}
+
+.slider-value {
+	width: 10px;
+	height: 100%;
+	background: #F00;
+	border-radius: 5px;
+}
+
+.semi-circle {
+	border: 20px solid;
+    border-color: black black transparent transparent;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    z-index: 2;
+}
+
+.img-handle {
+	height : 90%;
+	border: 1px solid black;
+	width: 50
+}
+
+.handle-container{
+	display: flex;
+	height: 21px;
+	width: 210px;
+	/*border:1px solid;*/
+	align-items: center;
+	position: relative;
+	transform: translateX(-50%) rotate(-45deg);
+	z-index: 1;
+}
+
+.handle-dummy {
+	width: 105px;
+	height: 10px;
+}
+
+.handlebar {
+	width: 75px;
+	height: 15px;
+	background-color: black;
+	pointer-events: none;
+}
+
+.knob {
+	border : 1px solid;
+	width : 30px;
+	height : 30px;
+	border-radius: 50%;
+	background: red;
+	transform: translateX(-10%);
+	cursor: pointer;
 }

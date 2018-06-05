@@ -2,7 +2,7 @@
 var angularApp = angular.module('angularApp', []);
 
 //Controllers
-angularApp.controller('mainController', ['$scope' ,'$http', '$timeout', function($scope, $http, $timeout){
+angularApp.controller('mainController', ['$scope' ,'$http', '$timeout','$window', function($scope, $http, $timeout,$window){
 
     var APIURL = "https://us-central1-quoteme-8c1dd.cloudfunctions.net/giveMeQuote"
     // var APIURL = 'http://localhost:8080'
@@ -10,8 +10,8 @@ angularApp.controller('mainController', ['$scope' ,'$http', '$timeout', function
     $scope.txt = 'Marvel Cinematic Universe-Loading';
     $scope.author = '';
 
-    var endTime = 1528237800000;
-    // var endTime = 0;
+    // var endTime = 1528237800000;
+    var endTime = 0;
     $scope.hours = '00';
     $scope.mins = '00';
     $scope.secs = '00';
@@ -20,6 +20,57 @@ angularApp.controller('mainController', ['$scope' ,'$http', '$timeout', function
     $scope.teamSelected = function(teamIndex) {
         // var team = $scope.teams[teamIndex];
     };
+
+    $scope.isKnobMove = false;      
+
+    $(window).on('mouseup',function(){  
+        console.log('Mouse Up');
+        $scope.isKnobMove = false;      
+        $scope.knobHold = false;
+        $scope.knobAngle = -45;
+        $('#handle').css('transform',"translateX(-50%) rotate(" + $scope.knobAngle + "deg)");
+    });
+
+    $(window).on('mousemove',function(event){        
+        if($scope.knobHold && $scope.knobAngle <=45){
+            $scope.isKnobMove = true;
+    //    var target = $scope('#handle');
+            $scope.knobAngle += 5;
+            $('#handle').css('transform',"translateX(-50%) rotate(" + $scope.knobAngle + "deg)");
+            // if($scope.mouseY <= event.pageY && (event.pageY - $scope.mouseY) >){
+            //     console.log('kela erankuthu');
+            // }
+        }
+       
+    });
+
+    $scope.knobAngle = -45;
+
+    $scope.knobHold = false;
+
+    $scope.mouseY = -1;
+
+    $scope.knobClick = function(event,hold){
+        console.log(event);
+        $scope.knobHold = hold;
+        if(hold){
+            $scope.mouseY = event.pageY;
+        }        
+        if(!hold){
+            var target = event.target;
+            $scope.knobAngle = -45;
+            target.parentElement.style.transform = "translateX(-50%) rotate(" + $scope.knobAngle + "deg)";
+        }
+    }
+
+    $scope.knobMove = function(event){
+        if($scope.knobHold){
+            // console.log(event);
+            var target = event.target;
+            $scope.knobAngle += 5;
+            target.parentElement.style.transform = "translateX(-50%) rotate(" + $scope.knobAngle + "deg)";
+        }
+    }
 
     $scope.countdown = function() {
         var time = (new Date()).getTime();
