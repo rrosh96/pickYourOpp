@@ -11,7 +11,13 @@
     </head>
     <body ng-app="angularApp">
         <div ng-controller = 'mainController' class="box">
-            <h1>Soliton Batminton Tournament 2018</h1>
+            <!-- <div class="title-1">Soliton Badminton Tournament - 2018</div> -->
+            <div class="timer" ng-show="timerOn">{{hours}}:{{mins}}:{{secs}}</div>
+            <div class="main-container" ng-hide="timerOn">
+                <div class="right-container">
+                    <div class="title-3">And your opponent is</div>
+                </div>
+            </div>
         </div>
     </body>
 </html> 

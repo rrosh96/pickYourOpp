@@ -1,4 +1,41 @@
+.title-1 {
+	font-size: 34px;
+	/* font-weight: 100; */
+	text-align: center;
+}
+
+.title-2 {
+	font-size: 24px;
+	/* font-weight: 500; */
+	margin-bottom: 20px;
+}
+
+.title-3 {
+	font-size: 24px;
+}
+
 .box {
-	width: 400px;
-	height: 100px;
-}	
+	width: 600px;
+	height: 300px;
+	padding: 20px;
+}
+
+.timer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 50px;
+	color: #09F;
+	text-align: center;
+	height: calc(100% - 38px);
+}
+
+.main-container {
+	display: flex;
+	padding: 5px;
+}
+
+.left-container, .right-container {
+	width: 50%;
+	padding: 10px;
+}
